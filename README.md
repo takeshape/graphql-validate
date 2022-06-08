@@ -12,7 +12,7 @@ throws an error due to peer conflicts.
 ## Installation
 
 ```
-$ npm add @takeshape/graphql-validate
+$ npm add @takeshape/graphql-validate -D
 ```
 
 You must have a valid
