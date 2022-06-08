@@ -126,8 +126,8 @@ function useFilter(docs: InvalidDocument[], patterns?: string[]) {
 }
 
 type Args = {
-  schema: string;
-  documents: string;
+  schema?: string;
+  documents?: string;
   deprecated: boolean;
   noStrictFragments: boolean;
   apollo: boolean;
