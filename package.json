@@ -1,0 +1,129 @@
+{
+  "name": "@takeshape/graphql-validate",
+  "version": "0.1.0",
+  "keywords": [
+    "graphql",
+    "validation"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "types": "./dist",
+  "bin": {
+    "graphql-validate": "./bin/graphql-validate.js"
+  },
+  "scripts": {
+    "build": "del-cli dist && tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "release": "np",
+    "test": "eslint src && ava"
+  },
+  "prettier": {
+    "bracketSpacing": false
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 12
+    },
+    "plugins": [
+      "json-format"
+    ],
+    "extends": [
+      "xo-space"
+    ],
+    "rules": {
+      "no-console": "error",
+      "no-unreachable": "error"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts"
+        ],
+        "extends": [
+          "xo-typescript/space"
+        ],
+        "rules": {
+          "@typescript-eslint/comma-dangle": "off",
+          "@typescript-eslint/naming-convention": "off",
+          "@typescript-eslint/no-throw-literal": "off",
+          "@typescript-eslint/no-unsafe-assignment": "off",
+          "@typescript-eslint/no-unsafe-call": "off",
+          "@typescript-eslint/no-unsafe-return": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.{md,mdx}"
+        ],
+        "settings": {
+          "mdx/code-blocks": false,
+          "mdx/language-mapper": {}
+        },
+        "extends": [
+          "plugin:mdx/recommended"
+        ]
+      }
+    ]
+  },
+  "eslintIgnore": [
+    "tsconfig.json",
+    "dist"
+  ],
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "files": [
+      "src/**/*.test.ts"
+    ],
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ]
+  },
+  "dependencies": {
+    "@graphql-inspector/config": "^3.1.2",
+    "@graphql-inspector/loaders": "^3.1.2",
+    "@graphql-tools/apollo-engine-loader": "^7.2.19",
+    "@graphql-tools/code-file-loader": "^7.2.18",
+    "@graphql-tools/git-loader": "^7.1.17",
+    "@graphql-tools/github-loader": "^7.2.23",
+    "@graphql-tools/graphql-file-loader": "^7.3.15",
+    "@graphql-tools/prisma-loader": "^7.1.23",
+    "@graphql-tools/url-loader": "^7.9.24",
+    "chalk": "^5.0.1",
+    "dependency-graph": "^0.11.0",
+    "figures": "^4.0.1",
+    "graphql-config": "^4.3.1",
+    "log-symbols": "^5.1.0",
+    "meow": "^10.1.2",
+    "std-env": "^3.1.1",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "@ava/typescript": "^3.0.1",
+    "@types/node": "^14.15.0",
+    "@types/yargs": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "ava": "^4.3.0",
+    "del-cli": "^4.0.1",
+    "eslint": "^8.17.0",
+    "eslint-config-xo-space": "^0.33.0",
+    "eslint-config-xo-typescript": "^0.51.1",
+    "eslint-plugin-json-format": "^2.0.1",
+    "eslint-plugin-mdx": "^1.17.0",
+    "graphql": "^16.5.0",
+    "np": "^7.6.1",
+    "ts-node": "^10.8.1",
+    "type-fest": "^2.13.0",
+    "typescript": "^4.7.3"
+  },
+  "peerDependencies": {
+    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+  },
+  "engines": {
+    "node": "^12.19.0 || ^14.15.0 || ^16.13.0"
+  }
+}
