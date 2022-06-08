@@ -37,7 +37,7 @@ export function handler({
 }) {
   let invalidDocuments = validateDocuments(
     schema,
-    documents.map(doc => new Source(print(doc.document!), doc.location)),
+    documents.map(doc => new Source(print(doc.document), doc.location)),
     {
       strictFragments,
       maxDepth,

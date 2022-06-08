@@ -15,9 +15,10 @@
   },
   "scripts": {
     "build": "del-cli dist && tsc -p tsconfig.build.json",
+    "lint": "eslint .",
     "prepare": "npm run build",
     "release": "np",
-    "test": "eslint src && ava"
+    "test": "npm run lint && ava"
   },
   "prettier": {
     "bracketSpacing": false

@@ -106,7 +106,7 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
 
       const transformedDoc = config.apollo
         ? transformDocumentWithApollo(merged, {
-          keepClientFields: config.keepClientFields!,
+          keepClientFields: config.keepClientFields,
         })
         : merged;
 
