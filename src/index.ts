@@ -2,7 +2,7 @@ import {Source as DocumentSource} from '@graphql-tools/utils';
 import {writeFileSync} from 'fs';
 import {GraphQLError, GraphQLSchema, print, Source} from 'graphql';
 import {loadConfig} from 'graphql-config';
-import {relative} from 'path';
+import path, {relative} from 'path';
 import {GlobalArgs, parseGlobalArgs} from './commands.js';
 import {InvalidDocument, validate as validateDocuments} from './core.js';
 import createLoader from './loaders.js';
@@ -126,6 +126,7 @@ function useFilter(docs: InvalidDocument[], patterns?: string[]) {
 }
 
 type Args = {
+  config?: string;
   schema?: string;
   documents?: string;
   deprecated: boolean;
@@ -142,7 +143,9 @@ type Args = {
 } & GlobalArgs;
 
 export default async function validate(args: Args) {
+  const filepath = args.config && path.resolve(args.config);
   const config = await loadConfig({
+    filepath,
     rootDir: process.cwd(),
     throwOnEmpty: true,
     throwOnMissing: true,

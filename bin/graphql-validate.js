@@ -6,79 +6,87 @@ import createCommand from '../dist/index.js';
 const cli = meow(
   `
 	Usage
-    $ next-auth-all-access generate-keys <flags>
+    $ graphql-validate <flags>
 
 	Options
-    --jwks-path  The path to write your jwks.json file to, defaults to './keys/jwks.json'
+    -c, --config                Path to GraphQL codegen YAML config file, 
+                                defaults to a valid graphql-config file
+        --schema                Point to a schema
+        --documents             Point to documents
+    -d, --deprecated            Fail on deprecated usage
+        --no-strict-fragments   Do not fail on duplicated fragment names
+    -m, --max-depth             Fail on deep operations
+        --apollo                Support Apollo directives
+        --keep-client-fields    Keeps the fields with @client, but removes 
+                                @client directive from them
+    -f, --filter                Show results only from a list of files (or file)
+    -i, --ignore                Ignore and do not load these files (supports glob)
+        --only-errors           Show only errors
+        --realtive-paths        Show relative paths
+    -s, --silent                Do not print results
+    -o, --output                Output JSON file
 `,
   {
-    allowUnknownFlags: false,
     importMeta: import.meta,
-    input: [
-      'generate-keys',
-    ],
+    inferType: true,
     flags: {
-      schema: {
-        describe: 'Point to a schema',
+      config: {
         type: 'string',
+        alias: 'c',
+      },
+      schema: {
+        type: 'string',
+        alias: 's',
       },
       documents: {
-        describe: 'Point to documents',
         type: 'string',
+        alias: 'd',
       },
       deprecated: {
         alias: 'd',
-        describe: 'Fail on deprecated usage',
         type: 'boolean',
         default: false,
       },
       noStrictFragments: {
-        describe: 'Do not fail on duplicated fragment names',
         type: 'boolean',
         default: false,
       },
       maxDepth: {
-        describe: 'Fail on deep operations',
         type: 'number',
+        alias: 'm',
       },
       apollo: {
-        describe: 'Support Apollo directives',
         type: 'boolean',
         default: false,
       },
       keepClientFields: {
-        describe: 'Keeps the fields with @client, but removes @client directive from them',
         type: 'boolean',
         default: false,
       },
       filter: {
-        describe: 'Show results only from a list of files (or file)',
-        array: true,
         type: 'string',
+        alias: 'f',
       },
       ignore: {
-        describe: 'Ignore and do not load these files (supports glob)',
-        array: true,
         type: 'string',
+        alias: 'i',
       },
       onlyErrors: {
-        describe: 'Show only errors',
         type: 'boolean',
         default: false,
       },
       relativePaths: {
-        describe: 'Show relative paths',
         type: 'boolean',
         default: false,
       },
       silent: {
-        describe: 'Do not print results',
         type: 'boolean',
         default: false,
+        alias: 's',
       },
       output: {
-        describe: 'Output JSON file',
         type: 'string',
+        alias: 'o',
       },
     },
   },
