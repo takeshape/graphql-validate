@@ -9,6 +9,9 @@ const cli = meow(
     $ graphql-validate <flags>
 
 	Options
+        --help                  Show this help
+        --version               Show the version
+        
     -c, --config                Path to GraphQL codegen YAML config file, 
                                 defaults to a valid graphql-config file
         --schema                Point to a schema

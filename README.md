@@ -37,6 +37,8 @@ $ npm run graphql-validate
 
 ## Options
 
-This supports all the `graphql-cli` options. You can review the code
-[here](./bin/graphql-validate.js).
+```
+$ graphql-validate --help
+```
 
+> This supports all the `graphql-cli` options.
